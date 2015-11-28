@@ -12,6 +12,9 @@ Settings:
 	git config --global core.autocrlf true
 	git config --global core.safecrlf true
 
+git checkout -b <имяветки> - создать ветку
+git checkout master - переключиться на ветку master
+git merge master - слить текущую ветку с master
 git add file
 
 git commit -m "comment"
@@ -19,6 +22,10 @@ git commit --amend -m "comment" - коммит вместо последнего
 
 git hist (alias for git log)
 git hist --all
+git hist --max-count=1 - покажет последний коммит
+git cat-file -t <hash> - 
+git cat-file -p <hash> - вывод данных последнего коммита
+git cat-file -p <treehash> - вывод дерева каталогов
 
 git tag tagName
 git tag -d oops - удалить тэг
