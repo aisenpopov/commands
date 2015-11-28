@@ -12,9 +12,23 @@ Settings:
 	git config --global core.autocrlf true
 	git config --global core.safecrlf true
 
+git init - создание репозитория
 git checkout -b <имяветки> - создать ветку
+	= git branch <имяветки>; checkout <имяветки>
+git branch - выводит список веток
+git branch -a - выводит все ветки, включая remote
 git checkout master - переключиться на ветку master
 git merge master - слить текущую ветку с master
+
+git clone repoFrom repoTo - клонирование
+git remote - удаленный репозиторий
+git remote show origin - подробная информация об удаленном репозитории
+
+git fetch - получить изменения из remote repo. Не сливает с локальными.
+git merge origin/master - чтобы слить полученные изменения
+git pull - эквивалента двум верхним командам
+git branch --track branchName1 origin/branchName2 - добавить ветку которая отслеживает изменения ветки branchName2 в remote repo
+
 git add file
 
 git commit -m "comment"
