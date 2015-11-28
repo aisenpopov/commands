@@ -27,7 +27,15 @@ git remote show origin - подробная информация об удале
 git fetch - получить изменения из remote repo. Не сливает с локальными.
 git merge origin/master - чтобы слить полученные изменения
 git pull - эквивалента двум верхним командам
-git branch --track branchName1 origin/branchName2 - добавить ветку которая отслеживает изменения ветки branchName2 в remote repo
+git branch --track branchName1 origin/branchName2 - добавить ветку которая отслеживает изменения ветки branchName2 в remote 		repo
+git branch --track shared master
+git clone --bare repo repo.git - создать чистый repo
+git remote add sharedRepo ../repo.git - добавить чистый репо в качестве удаленного в текущий репо
+git push sharedRepo master - отправить изменения в общий репо
+
+git daemon --verbose --export-all --base-path=. - запуск git сервера(From the work directory)
+git clone git://localhost/hello.git network_hello - клонирование(From the work directory)
+git daemon --enable=receive-pack --verbose --export-all --base-path=. - Отправка в Git Daemon(From the work directory)
 
 git add file
 
