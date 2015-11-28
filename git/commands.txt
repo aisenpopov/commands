@@ -1,3 +1,5 @@
+Команды Git:
+
 git add file
 
 git commit -m "comment"
@@ -25,11 +27,11 @@ git mv fileName dirName:
 	- Что файл fileName был удален.
 	- Что файл dirName/fileName был создан.
 
-Эти команды идентичны:
-mkdir lib
-git mv hello.html lib
-
-mkdir lib
-mv hello.html lib
-git add lib/hello.html
-git rm hello.html
+	Эти команды идентичны:
+		mkdir lib
+		git mv hello.html lib
+		
+		mkdir lib
+		mv hello.html lib
+		git add lib/hello.html
+		git rm hello.html
