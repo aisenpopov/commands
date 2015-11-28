@@ -1,5 +1,17 @@
 Команды Git:
 
+Settings:
+	git config --global user.name "Your Name"
+	git config --global user.email "your_email@whatever.com"
+	
+	Unix:
+	git config --global core.autocrlf input
+	git config --global core.safecrlf true
+	
+	Windows:
+	git config --global core.autocrlf true
+	git config --global core.safecrlf true
+
 git add file
 
 git commit -m "comment"
@@ -35,3 +47,5 @@ git mv fileName dirName:
 		mv hello.html lib
 		git add lib/hello.html
 		git rm hello.html
+
+ls -C .git - содержание папки git
