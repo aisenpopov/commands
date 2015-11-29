@@ -1,2 +1,3 @@
 javac -d dir file
 javap -c file
+test
