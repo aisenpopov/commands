@@ -32,6 +32,7 @@ git branch --track shared master
 git clone --bare repo repo.git - создать чистый repo
 git remote add sharedRepo ../repo.git - добавить чистый репо в качестве удаленного в текущий репо
 git push sharedRepo master - отправить изменения в общий репо
+git push origin master
 
 git daemon --verbose --export-all --base-path=. - запуск git сервера(From the work directory)
 git clone git://localhost/hello.git network_hello - клонирование(From the work directory)
