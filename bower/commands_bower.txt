@@ -1,0 +1,6 @@
+npm install -g bower
+bower init - в корне проекта
+bower install
+bower install --save jquery#1.11.1
+bower uninstall --save jquery#1.11.1
+bower list
