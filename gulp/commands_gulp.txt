@@ -1,0 +1,8 @@
+npm install -g gulp
+npm init
+npm install
+npm install --save-dev gulp - в корне проекта
+npm install --save-dev gulp-uglify
+npm install --save-dev gulp-concat
+npm install --save-dev gulp-less
+npm install --save-dev gulp-minify-css
