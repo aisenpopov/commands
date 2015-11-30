@@ -1,0 +1,19 @@
+DB admin:
+	Дамп базы:
+		pg_dump -U user -d dataBaseName -f fileName
+	
+	Восстановление с дампа:
+		psql -U user -W dataBaseName < fileName
+
+
+SQL команды:
+	Переименование БД:
+		ALTER DATABASE baseName RENAME TO newBaseName;
+
+	Сортировка:
+		ORDER BY POSITION(id::TEXT IN '1,2,3,4,5')
+	
+	Тип колонки:
+		ALTER TABLE tableName ALTER COLUMN columnName TYPE text;
+	
+		ALTER TABLE oldTableName RENAME TO newTableName
