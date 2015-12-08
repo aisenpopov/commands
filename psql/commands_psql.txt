@@ -18,6 +18,14 @@ SQL команды:
     			ORDER BY sort_expression1 [ASC | DESC] [NULLS { FIRST | LAST }]
              			[, sort_expression2 [ASC | DESC] [NULLS { FIRST | LAST }] ...]
 	
+	LIKE:
+		'abc' LIKE 'abc'    true
+		'abc' LIKE 'a%'     true
+		'abc' LIKE '_b_'    true
+		'abc' LIKE 'c'      false
+		
+		The key word ILIKE can be used instead of LIKE to make the match case-insensitive according to the active locale. This 		is not in the SQL standard but is a PostgreSQL extension.
+	
 	Тип колонки:
 		ALTER TABLE tableName ALTER COLUMN columnName TYPE text;
 	
