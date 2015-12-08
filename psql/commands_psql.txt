@@ -11,9 +11,15 @@ SQL команды:
 		ALTER DATABASE baseName RENAME TO newBaseName;
 
 	Сортировка:
-		ORDER BY POSITION(id::TEXT IN '1,2,3,4,5')
+		1)ORDER BY POSITION(id::TEXT IN '1,2,3,4,5')
+		
+		2)SELECT select_list
+    			FROM table_expression
+    			ORDER BY sort_expression1 [ASC | DESC] [NULLS { FIRST | LAST }]
+             			[, sort_expression2 [ASC | DESC] [NULLS { FIRST | LAST }] ...]
 	
 	Тип колонки:
 		ALTER TABLE tableName ALTER COLUMN columnName TYPE text;
 	
 		ALTER TABLE oldTableName RENAME TO newTableName
+
