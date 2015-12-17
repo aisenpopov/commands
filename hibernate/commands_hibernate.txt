@@ -1,0 +1,14 @@
+1)
+@Entity
+@Table(name = "product")
+@org.hibernate.annotations.Table(appliesTo = "product", 
+	indexes = {
+				@Index(name = "product_path", columnNames = {"path"}),
+				@Index(name = "product_autor", columnNames = {"autor_id"})
+	})
+@org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE)
+
+2)
+@Id
+@SequenceGenerator(name="nextIdProduct",sequenceName="product_id_seq", allocationSize=1)
+@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="nextIdProduct")
