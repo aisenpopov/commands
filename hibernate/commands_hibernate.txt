@@ -1,14 +1,189 @@
-1)
 @Entity
 @Table(name = "product")
 @org.hibernate.annotations.Table(appliesTo = "product", 
 	indexes = {
-				@Index(name = "product_path", columnNames = {"path"}),
+				@Index(name = "product_name", columnNames = {"name"}),
 				@Index(name = "product_autor", columnNames = {"autor_id"})
 	})
 @org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE)
+public class HibernateProduct {
 
-2)
-@Id
-@SequenceGenerator(name="nextIdProduct",sequenceName="product_id_seq", allocationSize=1)
-@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="nextIdProduct")
+	private int id;
+	private Type type;
+	private String name;
+	private Date created;
+	private boolean finished;
+	private Double price;
+	private TypeBook typeBook;
+	private String description;
+	private String articul;
+	
+	private List<ICategory> categories;
+	private List<IProductModification> modifications;
+	
+	private List<IProduct> buyAlso;
+	
+	@Override
+	@Id
+	@SequenceGenerator(name="nextIdProduct",sequenceName="product_id_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="nextIdProduct")
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	@Override
+	@Enumerated(EnumType.STRING)
+	@Column(nullable=false)
+	public Type getType() {
+		return type;
+	}
+	
+	public void setType(Type type) {
+		this.type = type;
+	}
+	
+	@Override
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Transient
+	public String getDisplayName() {
+		return name;
+	}
+	
+	@Override
+	public Double getPrice() {
+		return price != null ? price : 0;
+	}
+	
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+	
+	@Override
+	@Column(name="articul")
+	public String getArticul() {
+		return articul;
+	}
+	
+	public void setArticul(String articul) {
+		this.articul = articul;
+	}
+	
+	@Column(columnDefinition="BOOLEAN DEFAULT FALSE")
+	public boolean isFinished() {
+		return finished;
+	}
+	
+	public void setFinished(boolean finished) {
+		this.finished = finished;
+	}
+	
+	@Column(columnDefinition = "TEXT")
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	@ManyToMany(targetEntity = HibernateCategory.class)
+	@LazyCollection(value = LazyCollectionOption.TRUE)
+	@JoinTable(name = "product_category", 
+			joinColumns = @JoinColumn(name = "product_id"), 
+			inverseJoinColumns = @JoinColumn(name = "category_id"))
+	public List<ICategory> getCategories() {
+		if(categories == null) {
+			categories = new ArrayList<ICategory>();
+		}
+		return categories;
+	}
+	
+	public void setCategories(List<ICategory> categories) {
+		this.categories = categories;
+	}
+	
+	@ManyToMany(targetEntity = HibernateProduct.class)
+	@LazyCollection(value = LazyCollectionOption.TRUE)
+	@JoinTable(name = "product_buy_also", 
+			joinColumns = @JoinColumn(name = "product_id"), 
+			inverseJoinColumns = @JoinColumn(name = "buy_also_id"))
+	public List<IProduct> getBuyAlso() {
+		if(buyAlso == null) {
+			buyAlso = new ArrayList<IProduct>();
+		}
+		return buyAlso;
+	}
+	
+	public void setBuyAlso(List<IProduct> buyAlso) {
+		this.buyAlso = buyAlso;
+	}
+	
+	@OneToMany(targetEntity = HibernateProductModification.class, fetch=FetchType.LAZY)
+	@JoinColumn(name="product_id")
+	@LazyCollection(value = LazyCollectionOption.TRUE)
+	public List<IProductModification> getModifications() {
+		if(modifications == null) {
+			modifications = new ArrayList<IProductModification>();
+		}
+		return modifications;
+	}
+	
+	public void setModifications(List<IProductModification> modifications) {
+		this.modifications = modifications;
+	}
+	
+	@ManyToOne(targetEntity=HibernateAutor.class, fetch=FetchType.LAZY)
+	@JoinColumn(name="autor_id")
+	public IAutor getAutor() {
+		return autor;
+	}
+	
+	public void setAutor(IAutor autor) {
+		this.autor = autor;
+	}
+	
+	@Enumerated(EnumType.STRING)
+	public TypeBook getTypeBook() {
+		return typeBook;
+	}
+	
+	public void setTypeBook(TypeBook typeBook) {
+		this.typeBook = typeBook;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof HibernateProduct)) 
+			return false;
+		
+		HibernateProduct other = (HibernateProduct) obj;
+		if (id != other.getId())
+			return false;
+		return true;
+	}
+	
+	
+}
