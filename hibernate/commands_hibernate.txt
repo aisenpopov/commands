@@ -11,19 +11,15 @@ public class HibernateProduct {
 	private int id;
 	private Type type;
 	private String name;
-	private Date created;
 	private boolean finished;
-	private Double price;
 	private TypeBook typeBook;
 	private String description;
-	private String articul;
-	
+
 	private List<ICategory> categories;
 	private List<IProductModification> modifications;
 	
 	private List<IProduct> buyAlso;
 	
-	@Override
 	@Id
 	@SequenceGenerator(name="nextIdProduct",sequenceName="product_id_seq", allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="nextIdProduct")
@@ -35,7 +31,6 @@ public class HibernateProduct {
 		this.id = id;
 	}
 	
-	@Override
 	@Enumerated(EnumType.STRING)
 	@Column(nullable=false)
 	public Type getType() {
@@ -46,7 +41,7 @@ public class HibernateProduct {
 		this.type = type;
 	}
 	
-	@Override
+	@Column(name="name")
 	public String getName() {
 		return name;
 	}
@@ -58,25 +53,6 @@ public class HibernateProduct {
 	@Transient
 	public String getDisplayName() {
 		return name;
-	}
-	
-	@Override
-	public Double getPrice() {
-		return price != null ? price : 0;
-	}
-	
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-	
-	@Override
-	@Column(name="articul")
-	public String getArticul() {
-		return articul;
-	}
-	
-	public void setArticul(String articul) {
-		this.articul = articul;
 	}
 	
 	@Column(columnDefinition="BOOLEAN DEFAULT FALSE")
@@ -162,29 +138,6 @@ public class HibernateProduct {
 		this.typeBook = typeBook;
 	}
 	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof HibernateProduct)) 
-			return false;
-		
-		HibernateProduct other = (HibernateProduct) obj;
-		if (id != other.getId())
-			return false;
-		return true;
-	}
-
 }
 
 @Entity
