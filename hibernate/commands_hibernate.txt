@@ -14,6 +14,8 @@ public class HibernateProduct {
 	private boolean finished;
 	private TypeBook typeBook;
 	private String description;
+	
+	private IAutor autor;
 
 	private List<ICategory> categories;
 	private List<IProductModification> modifications;
