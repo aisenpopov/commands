@@ -184,6 +184,52 @@ public class HibernateProduct {
 			return false;
 		return true;
 	}
+
+}
+
+@Entity
+@Table(name = "product_modification")
+@org.hibernate.annotations.Table(appliesTo = "product_modification", 
+	indexes = {@Index(name = "product_modification_product", columnNames = {"product_id"})})
+@org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE)
+public class HibernateProductModification implements IProductModification {
+
+	private int id;
+	private IProduct product;
+	private Status status;
 	
+	@Override
+	@Id
+	@SequenceGenerator(name="nextIdProductModification",sequenceName="product_modification_id_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="nextIdProductModification")
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	@Override
+	@ManyToOne(targetEntity=HibernateProduct.class, fetch=FetchType.LAZY)
+	@JoinColumn(name="product_id")
+	public IProduct getProduct() {
+		return product;
+	}
+
+	public void setProduct(IProduct product) {
+		this.product = product;
+	}
+
+	@Override
+	@Enumerated(EnumType.STRING)
+	public Status getStatus() {
+		return status;
+	}
+	
+	public void setStatus(Status status) {
+		this.status = status;
+	}
 	
 }
+
