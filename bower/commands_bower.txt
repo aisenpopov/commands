@@ -4,3 +4,18 @@ bower install
 bower install --save jquery#1.11.1
 bower uninstall --save jquery#1.11.1
 bower list
+
+bower list - список установленных пакетов
+bower list --path - список путей установленных пакетов
+
+#2.1.4 = [2.1.4, 2.1.4]
+#~2.1.4 = [2.1.4, 2.2.0)
+#^2.1.4 = [2.1.4, 3.0.0)
+latest
+
+Изменение расположения пакетов: 
+  1)в корне создать файл .bowerrc
+  2)в нем прописать 
+    {
+    	"directory" :  "path"
+    }
