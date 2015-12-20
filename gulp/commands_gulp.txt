@@ -1,3 +1,4 @@
+I) install:
 npm install -g gulp
 npm init
 npm install
@@ -7,11 +8,36 @@ npm install --save-dev gulp-concat
 npm install --save-dev gulp-less
 npm install --save-dev gulp-minify-css
 
-run not global gulp:
-  package.json
+II) run not global gulp:
+1)package.json
   {
     "scripts": {
       "gulp": "gulp",
       "minify": "gulp minify"
     }
   }
+2)npm run gulp
+
+III) gulp-google-cdn:
+var gulp = require('gulp');
+var googlecdn = require('gulp-google-cdn');
+
+gulp.task('default', function () {
+    return gulp.src('index.html')
+        .pipe(googlecdn(require('./bower.json')))
+        .pipe(gulp.dest('dist'));
+});
+
+IV) gulp-main-files:
+var gulp = require('gulp');
+var mainBowerFiles = require('main-bower-files');
+
+gulp.task('mainfilesJS', function() {
+    return gulp.src(mainBowerFiles("**/*.js"))
+        .pipe(gulp.dest("dist/js"))
+});
+
+gulp.task('mainfilesCSS', function() {
+    return gulp.src(mainBowerFiles("**/*.css"))
+        .pipe(gulp.dest("dist/css"))
+});
