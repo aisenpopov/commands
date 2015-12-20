@@ -6,3 +6,12 @@ npm install --save-dev gulp-uglify
 npm install --save-dev gulp-concat
 npm install --save-dev gulp-less
 npm install --save-dev gulp-minify-css
+
+run not global gulp:
+  package.json
+  {
+    "scripts": {
+      "gulp": "gulp",
+      "minify": "gulp minify"
+    }
+  }
