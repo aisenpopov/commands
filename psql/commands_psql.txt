@@ -1,9 +1,10 @@
 DB admin:
-	Дамп базы:
-		pg_dump -U user -d dataBaseName -f fileName
-	
-	Восстановление с дампа:
-		psql -U user -W dataBaseName < fileName
+	I) cmd
+		Дамп базы:
+			pg_dump -U user -d dataBaseName -f fileName
+		
+		Восстановление с дампа:
+			psql -U user -W dataBaseName < fileName
 
 
 SQL команды:
