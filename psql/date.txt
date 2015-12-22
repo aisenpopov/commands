@@ -1,0 +1,56 @@
+
+Date/Time Operators
+
+Operator	Example	Result
++	date '2001-09-28' + integer '7'	date '2001-10-05'
++	date '2001-09-28' + interval '1 hour'	timestamp '2001-09-28 01:00:00'
++	date '2001-09-28' + time '03:00'	timestamp '2001-09-28 03:00:00'
++	interval '1 day' + interval '1 hour'	interval '1 day 01:00:00'
++	timestamp '2001-09-28 01:00' + interval '23 hours'	timestamp '2001-09-29 00:00:00'
++	time '01:00' + interval '3 hours'	time '04:00:00'
+-	- interval '23 hours'	interval '-23:00:00'
+-	date '2001-10-01' - date '2001-09-28'	integer '3' (days)
+-	date '2001-10-01' - integer '7'	date '2001-09-24'
+-	date '2001-09-28' - interval '1 hour'	timestamp '2001-09-27 23:00:00'
+-	time '05:00' - time '03:00'	interval '02:00:00'
+-	time '05:00' - interval '2 hours'	time '03:00:00'
+-	timestamp '2001-09-28 23:00' - interval '23 hours'	timestamp '2001-09-28 00:00:00'
+-	interval '1 day' - interval '1 hour'	interval '1 day -01:00:00'
+-	timestamp '2001-09-29 03:00' - timestamp '2001-09-27 12:00'	interval '1 day 15:00:00'
+*	900 * interval '1 second'	interval '00:15:00'
+*	21 * interval '1 day'	interval '21 days'
+*	double precision '3.5' * interval '1 hour'	interval '03:30:00'
+/	interval '1 hour' / double precision '1.5'	interval '00:40:00'
+
+Date/Time Functions
+
+Function	Return Type	Description	Example	Result
+age(timestamp, timestamp)	interval	Subtract arguments, producing a "symbolic" result that uses years and months, rather than just days	age(timestamp '2001-04-10', timestamp '1957-06-13')	43 years 9 mons 27 days
+age(timestamp)	interval	Subtract from current_date (at midnight)	age(timestamp '1957-06-13')	43 years 8 mons 3 days
+clock_timestamp()	timestamp with time zone	Current date and time (changes during statement execution); see Section 9.9.4	 	 
+current_date	date	Current date; see Section 9.9.4	 	 
+current_time	time with time zone	Current time of day; see Section 9.9.4	 	 
+current_timestamp	timestamp with time zone	Current date and time (start of current transaction); see Section 9.9.4	 	 
+date_part(text, timestamp)	double precision	Get subfield (equivalent to extract); see Section 9.9.1	date_part('hour', timestamp '2001-02-16 20:38:40')	20
+date_part(text, interval)	double precision	Get subfield (equivalent to extract); see Section 9.9.1	date_part('month', interval '2 years 3 months')	3
+date_trunc(text, timestamp)	timestamp	Truncate to specified precision; see also Section 9.9.2	date_trunc('hour', timestamp '2001-02-16 20:38:40')	2001-02-16 20:00:00
+date_trunc(text, interval)	interval	Truncate to specified precision; see also Section 9.9.2	date_trunc('hour', interval '2 days 3 hours 40 minutes')	2 days 03:00:00
+extract(field from timestamp)	double precision	Get subfield; see Section 9.9.1	extract(hour from timestamp '2001-02-16 20:38:40')	20
+extract(field from interval)	double precision	Get subfield; see Section 9.9.1	extract(month from interval '2 years 3 months')	3
+isfinite(date)	boolean	Test for finite date (not +/-infinity)	isfinite(date '2001-02-16')	true
+isfinite(timestamp)	boolean	Test for finite time stamp (not +/-infinity)	isfinite(timestamp '2001-02-16 21:28:30')	true
+isfinite(interval)	boolean	Test for finite interval	isfinite(interval '4 hours')	true
+justify_days(interval)	interval	Adjust interval so 30-day time periods are represented as months	justify_days(interval '35 days')	1 mon 5 days
+justify_hours(interval)	interval	Adjust interval so 24-hour time periods are represented as days	justify_hours(interval '27 hours')	1 day 03:00:00
+justify_interval(interval)	interval	Adjust interval using justify_days and justify_hours, with additional sign adjustments	justify_interval(interval '1 mon -1 hour')	29 days 23:00:00
+localtime	time	Current time of day; see Section 9.9.4	 	 
+localtimestamp	timestamp	Current date and time (start of current transaction); see Section 9.9.4	 	 
+make_date(year int, month int, day int)	date	Create date from year, month and day fields	make_date(2013, 7, 15)	2013-07-15
+make_interval(years int DEFAULT 0, months int DEFAULT 0, weeks int DEFAULT 0, days int DEFAULT 0, hours int DEFAULT 0, mins int DEFAULT 0, secs double precision DEFAULT 0.0)	interval	Create interval from years, months, weeks, days, hours, minutes and seconds fields	make_interval(days := 10)	10 days
+make_time(hour int, min int, sec double precision)	time	Create time from hour, minute and seconds fields	make_time(8, 15, 23.5)	08:15:23.5
+make_timestamp(year int, month int, day int, hour int, min int, sec double precision)	timestamp	Create timestamp from year, month, day, hour, minute and seconds fields	make_timestamp(2013, 7, 15, 8, 15, 23.5)	2013-07-15 08:15:23.5
+make_timestamptz(year int, month int, day int, hour int, min int, sec double precision, [ timezone text ])	timestamp with time zone	Create timestamp with time zone from year, month, day, hour, minute and seconds fields. When timezone is not specified, then current time zone is used.	make_timestamptz(2013, 7, 15, 8, 15, 23.5)	2013-07-15 08:15:23.5+01
+now()	timestamp with time zone	Current date and time (start of current transaction); see Section 9.9.4	 	 
+statement_timestamp()	timestamp with time zone	Current date and time (start of current statement); see Section 9.9.4	 	 
+timeofday()	text	Current date and time (like clock_timestamp, but as a text string); see Section 9.9.4	 	 
+transaction_timestamp()	timestamp with time zone	Current date and time (start of current transaction); see Section 9.9.4	 	 
