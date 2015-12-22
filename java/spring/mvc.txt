@@ -1,0 +1,8 @@
+I)
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<spring:bind path="fieldName">
+     <form:input path="fieldName" />
+     <form:errors path="fieldName" cssClass="error" />
+     ${status.error ? 'error' : ''}
+</spring:bind>
