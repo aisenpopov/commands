@@ -5,6 +5,8 @@ DB admin:
 		
 		Восстановление с дампа:
 			psql -U user -W dataBaseName < fileName
+	II)
+		pg_dump baseName > baseName.sql
 
 
 SQL команды:
