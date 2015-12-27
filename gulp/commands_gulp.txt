@@ -28,7 +28,7 @@ gulp.task('default', function () {
         .pipe(gulp.dest('dist'));
 });
 
-IV) gulp-main-files:
+IV) main-bower-files:
 var gulp = require('gulp');
 var mainBowerFiles = require('main-bower-files');
 
