@@ -12,7 +12,6 @@ Common:
 
 Install java:
   	1)
-     	sudo add-apt-repository ppa:webupd8team/java
      	add-apt-repository ppa:webupd8team/java
      	apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
      	apt-get update
