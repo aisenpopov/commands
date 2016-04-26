@@ -1,0 +1,3 @@
+u: undo last change
+Ctrl-R: redo changes which were undone
+U: return the last line which was modified to its original state (reverse all changes in last modified line)
