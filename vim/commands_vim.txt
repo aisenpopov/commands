@@ -17,3 +17,5 @@ to save, :wq, :x or ZZ
 to exit without saving, :q! or ZQ
 To reload a file and undo all changes you have made...
 Press several times ESC and then enter :e!.
+
+REMOVE: edited
