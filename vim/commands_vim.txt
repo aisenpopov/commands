@@ -9,3 +9,11 @@ To cut-and-paste or copy-and-paste:
 	4) Press d (delete) to cut, or y (yank) to copy.
 	5) Move the cursor to the desired paste location.
 	6) Press p to paste after the cursor, or P to paste before.
+
+	
+Press i or a to get into Insert mode, type message of choice
+press several times ESC to get out of Insert-Mode, or any other mode you might have ran into by accident
+to save, :wq, :x or ZZ
+to exit without saving, :q! or ZQ
+To reload a file and undo all changes you have made...
+Press several times ESC and then enter :e!.
