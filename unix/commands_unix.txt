@@ -8,6 +8,7 @@ Common:
 	cd ~ - домашняя директория	
 	pwd - путь текущей папки
 	mv dir path - перемещение папки
+	cp -R source/ destination/ - копирование папок
 	ctrl + R - search in history
 
 Install java:
