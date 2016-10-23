@@ -14,6 +14,7 @@ DB admin:
 	II) unix
 		pg_dump baseName > baseName.sql
 		pg_restore -d newdb db.dump - восстановление	
+		psql dbname < infile - восстановление с .sql файла
 
 SQL команды:
 	Переименование БД:
